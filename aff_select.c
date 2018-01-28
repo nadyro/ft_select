@@ -6,7 +6,7 @@
 /*   By: nsehnoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 18:13:31 by nsehnoun          #+#    #+#             */
-/*   Updated: 2018/01/27 23:07:44 by nsehnoun         ###   ########.fr       */
+/*   Updated: 2018/01/28 22:51:05 by nsehnoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	print_selected(char *str, int job, int cases)
 	}
 	if (cases == 2)
 	{
-		tputs(tgetstr("us", NULL), ft_strlen(str), fslct_putchar);
+		tputs(tgetstr("us", NULL), ft_strlen(str) - 1, fslct_putchar);
 		ft_putstr_fd(str, 2);
 		ft_putchar_fd(' ', 2);
-		tputs(tgetstr("ue", NULL), ft_strlen(str), fslct_putchar);
+		tputs(tgetstr("ue", NULL), ft_strlen(str) - 1, fslct_putchar);
 	}
 	if (cases == 3)
 	{

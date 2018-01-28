@@ -6,7 +6,7 @@
 /*   By: nsehnoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 23:31:28 by nsehnoun          #+#    #+#             */
-/*   Updated: 2018/01/27 23:00:01 by nsehnoun         ###   ########.fr       */
+/*   Updated: 2018/01/28 23:18:30 by nsehnoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,11 @@ int		print_return_ptr(int ix, int y, char **argv, t_list *l)
 {
 	int		i;
 
+	(void)l;
 	i = count_args(argv);
 	if (ix == y)
 	{
-		put_text(argv[ix], l, ix);
+		print_selected(argv[ix], 0, 1);
 		if (ix + 1 != i)
 			ix++;
 	}
@@ -57,10 +58,9 @@ void	print_afterselect(char **a, int *y, t_list *l)
 	sub_y = *y;
 	j = count_args(a);
 	x = 0;
-	(x >= j ? x = 1 : x);
 	while (a[++x])
 	{
-		x = print_return_ptr(x, sub_y, a, l);
+		x = print_return_ptr(x, *y, a, l);
 		if (sub_y != x && x != j)
 		{
 			if (x - 1 == sub_y)
@@ -71,10 +71,11 @@ void	print_afterselect(char **a, int *y, t_list *l)
 			if (x != j)
 				(x + 1 == j ? puts_fd(a[x], 1, x, l) : puts_fd(a[x], 0, x, l));
 		}
-		(x == j ? x-- : x);
+		(x >= j ? x-- : x);
 	}
 	sub_y++;
 	*y = sub_y;
+	(*y >= j ? *y = 1 : *y);
 }
 
 void	manage_selected_items(t_list **lst, int *y, char **argv, t_list *l)
@@ -102,5 +103,21 @@ void	manage_selected_items(t_list **lst, int *y, char **argv, t_list *l)
 	while (head->next != NULL)
 		head = head->next;
 	head->next = node;
+	(*y >= j ? *y = 1 : *y);
 	print_afterselect(argv, y, l);
 }
+/*
+char	**delete_selected_items(t_list **lst, int *y, char **argv)
+{
+	int		i;
+	int		j;
+
+	i = 1;
+	j = count_args(argv);
+	while (argv[i])
+	{
+		if (i == *y)
+	}
+	ft_bzero(argv[*y]);
+	free(argv[*y]);
+}*/

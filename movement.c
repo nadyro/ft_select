@@ -6,7 +6,7 @@
 /*   By: nsehnoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:37:55 by nsehnoun          #+#    #+#             */
-/*   Updated: 2018/01/27 23:02:30 by nsehnoun         ###   ########.fr       */
+/*   Updated: 2018/01/28 20:12:52 by nsehnoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	move_up(char **a, int *j, int *y, t_list *l)
 	z--;
 	if (z == 0)
 		z = i - 1;
+	tputs(tgetstr("cl", NULL), 1, fslct_putchar);
 	while (a[x])
 	{
 		if (x == z)
@@ -59,6 +60,7 @@ void	move_down(char **a, int *j, int *y, t_list *l)
 	x = 0;
 	z++;
 	(z >= i ? z = 1 : z);
+	tputs(tgetstr("cl", NULL), 1, fslct_putchar);
 	while (a[++x])
 	{
 		if (x == z)

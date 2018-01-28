@@ -6,7 +6,7 @@
 /*   By: nsehnoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 15:40:53 by nsehnoun          #+#    #+#             */
-/*   Updated: 2018/01/27 23:09:04 by nsehnoun         ###   ########.fr       */
+/*   Updated: 2018/01/28 19:59:41 by nsehnoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,5 @@ void	select_items(char **argv, t_list *largs, int *j, int *y);
 void	print_selected(char *str, int job, int cases);
 int		print_return_ptr(int ix, int y, char **argv, t_list *l);
 void	print_afterselect(char **argv, int *y, t_list *lst);
+void	delete_selected_items(t_list **lst, int *y, char **argv);
 #endif

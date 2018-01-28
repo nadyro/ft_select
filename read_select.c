@@ -6,7 +6,7 @@
 /*   By: nsehnoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 14:49:57 by nsehnoun          #+#    #+#             */
-/*   Updated: 2018/01/27 23:09:32 by nsehnoun         ###   ########.fr       */
+/*   Updated: 2018/01/28 22:53:26 by nsehnoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,12 @@ void	get_list(t_list **lst)
 	while ((*lst))
 	{
 		if ((*lst)->next != NULL)
-			puts_fd((*lst)->content, 0, 1, (*lst));
+		{
+			ft_putstr_fd((*lst)->content, 1);
+			ft_putchar_fd(' ', 1);
+		}
 		else
-			puts_fd((*lst)->content, 1, 1, (*lst));
+			ft_putstr_fd((*lst)->content, 1);
 		(*lst) = (*lst)->next;
 	}
 }

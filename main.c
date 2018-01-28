@@ -6,7 +6,7 @@
 /*   By: nsehnoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 15:33:18 by nsehnoun          #+#    #+#             */
-/*   Updated: 2018/01/27 22:39:45 by nsehnoun         ###   ########.fr       */
+/*   Updated: 2018/01/28 23:20:17 by nsehnoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,20 @@ int		main(int argc, char **argv)
 			}
 			if (key[0] == 111)
 				break;
+			if (key[0] == 13)
+				break;
+			if (key[0] == 8 || key[0] == 127)
+			{
+				break;
+			}
 		}
 	}
 	tputs(tgetstr("cl", NULL), 1, fslct_putchar);
 	if (lst)
+	{
 		get_list(&lst);
+		ft_lstdel(&lst, ft_bzero);
+	}
 	tputs(tgetstr("ve", NULL), 1, fslct_putchar);
 	getentry_term(getenv("TERM"), 1);
 	return (0);
