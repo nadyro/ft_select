@@ -6,17 +6,19 @@
 #    By: nsehnoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/11 15:34:29 by nsehnoun          #+#    #+#              #
-#    Updated: 2018/01/25 17:45:11 by nsehnoun         ###   ########.fr        #
+#    Updated: 2018/02/13 15:09:17 by nsehnoun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC = main.c \
 	  term_infos.c \
 	  aff_select.c \
-	  read_select.c \
+	  manage_list.c \
 	  movement.c \
-	  select.c \
-	  signal_management.c \
+	  ft_select.c \
+	  signal_manager.c \
+	  window_handler.c \
+	  singleton.c \
 
 NAME = ft_select
 

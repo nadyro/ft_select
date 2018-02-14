@@ -6,7 +6,7 @@
 #    By: nsehnoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/12 20:44:29 by nsehnoun          #+#    #+#              #
-#    Updated: 2017/11/26 06:08:24 by nsehnoun         ###   ########.fr        #
+#    Updated: 2018/01/31 20:12:12 by nsehnoun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,6 +74,7 @@ SRC = ft_atoi.c \
 	  get_next_line.c \
 	  ft_split_whitespaces.c \
 	  ft_splitchar.c \
+	  print_list.c \
 
 
 SRC2 = ft_atoi.o \
@@ -140,6 +141,7 @@ SRC2 = ft_atoi.o \
 	   get_next_line.o \
 	   ft_split_whitespaces.o \
 	   ft_splitchar.o \
+	   print_list.o \
 
 NAME = libft.a
 

@@ -6,7 +6,7 @@
 /*   By: nsehnoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 15:40:53 by nsehnoun          #+#    #+#             */
-/*   Updated: 2018/01/28 19:59:41 by nsehnoun         ###   ########.fr       */
+/*   Updated: 2018/02/13 13:54:40 by nsehnoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,46 @@
 # include <fcntl.h>
 # include <signal.h>
 
-void	getentry_term(char *term, int is_end);
-int		fslct_putchar(int c);
-void	read_select(t_list *list);
-void	put_text(char *str, t_list *lst, int index);
-void	move_down(char **argv, int *j, int *y, t_list *l);
-void	move_up(char **argv, int *j, int *y, t_list *l);
-void	args_cursor(char **argv);
-void	manage_selected_items(t_list **lst, int *y, char **argv, t_list *l);
-void	get_list(t_list **lst);
-void	sig_type(int signo);
-void	puts_fd(char *str, int end, int index, t_list *l);
-void	print_exit(int err_type);
-void	configure_term(struct termios *term, int is_end);
-int		count_args(char **argv);
-t_list	*list_args(t_list **lst, int y);
-void	select_items(char **argv, t_list *largs, int *j, int *y);
-void	print_selected(char *str, int job, int cases);
-int		print_return_ptr(int ix, int y, char **argv, t_list *l);
-void	print_afterselect(char **argv, int *y, t_list *lst);
-void	delete_selected_items(t_list **lst, int *y, char **argv);
+extern int		g_p;
+struct termios	term;
+struct			s_inf {
+
+	size_t		rows;
+	size_t		cols;
+	size_t		len_args;
+	size_t		tmp;
+	size_t		tmp_rows;
+	size_t		tmp_lenargs;
+	size_t		max_len;
+};
+void			getentry_term(char *term, int is_end);
+void			configure_term(struct termios *term);
+void			print_exit(int err_type);
+int				fslct_putchar(int c);
+void			print_selected(int task, int cases, t_list **l);
+void			control_selected(int s, t_list **l);
+void			control_others(t_list **l);
+void			copy_into_list(t_list **lst, char *argv);
+void			manage_deletion(t_list **l);
+void			del_head(t_list **to_del);
+void			del_center(t_list **l);
+void			del_last(t_list **l, int *pos);
+void			move_out(t_list **lst, int *pos, int s, int d);
+void			exit_to_origin(char *term, int err, struct s_inf *infos);
+void			key_assist(char *key, int *l, int *pos);
+void			selection_assist(char *key, int *l, int *pos);
+int				exit_or_delete(char *key, int *pos);
+int				list_length(t_list *lst);
+void			print_args(t_list *l);
+void			ft_select(void);
+void			print_final_selection(void);
+void			signal_handling(int signum);
+struct s_inf	*init_struct(void);
+t_list			*first_singleton(t_list *lst);
+void			manage_signals(void);
+void			manage_winch(int *pos);
+struct s_inf	*manage_display_on_winch(t_list *l);
+struct s_inf	*adapt_display_on_winch(struct s_inf *infos, char *s);
+void			is_to_del(int d, t_list **l, int *pos);
+void			print_to_adjust(struct s_inf *infos, char *s);
 #endif
