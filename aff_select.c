@@ -6,7 +6,7 @@
 /*   By: nsehnoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 18:13:31 by nsehnoun          #+#    #+#             */
-/*   Updated: 2018/02/12 18:40:55 by nsehnoun         ###   ########.fr       */
+/*   Updated: 2018/02/15 07:46:12 by nsehnoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	print_exit(int err_type)
 		ft_putendl_fd("\nProcess terminated.", 2);
 	if (err_type == 5)
 		ft_putendl_fd("\nCould not allocate memory.", 2);
+	if (err_type == 6)
+		ft_putendl_fd("\nNo arguments given.", 2);
 	exit(1);
 }
 

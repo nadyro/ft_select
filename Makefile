@@ -6,7 +6,7 @@
 #    By: nsehnoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/11 15:34:29 by nsehnoun          #+#    #+#              #
-#    Updated: 2018/02/13 15:09:17 by nsehnoun         ###   ########.fr        #
+#    Updated: 2018/02/15 07:47:49 by nsehnoun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ HEADERS = ft_select.h
 
 OBJ = $(SRC:.c=.o)
 
-FLAGS = -Wall -Werror -Wextra -fsanitize=address -g3
+FLAGS = -Wall -Werror -Wextra -g3
 all: $(NAME)
 
 $(NAME): $(OBJ)

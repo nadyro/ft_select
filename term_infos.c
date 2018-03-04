@@ -6,7 +6,7 @@
 /*   By: nsehnoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 17:14:34 by nsehnoun          #+#    #+#             */
-/*   Updated: 2018/02/13 04:54:08 by nsehnoun         ###   ########.fr       */
+/*   Updated: 2018/02/15 05:50:41 by nsehnoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 struct termios term;
 
-void	configure_term(struct termios *term)
+void	configure_term(struct termios *ter)
 {
-	term->c_lflag &= ~(ICANON);
-	term->c_lflag &= ~(ECHO);
-	term->c_cc[VMIN] = 1;
-	term->c_cc[VTIME] = 0;
+	ter->c_lflag &= ~(ICANON);
+	ter->c_lflag &= ~(ECHO);
+	ter->c_cc[VMIN] = 1;
+	ter->c_cc[VTIME] = 0;
 }
 
 void	getentry_term(char *terminal, int is_end)

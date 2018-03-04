@@ -6,7 +6,7 @@
 /*   By: nsehnoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 15:40:53 by nsehnoun          #+#    #+#             */
-/*   Updated: 2018/02/13 13:54:40 by nsehnoun         ###   ########.fr       */
+/*   Updated: 2018/02/15 05:50:50 by nsehnoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@
 # include <signal.h>
 
 extern int		g_p;
-struct termios	term;
+extern int		*g_sig_pos;
+extern struct termios	term;
 struct			s_inf {
 
 	size_t		rows;
@@ -68,4 +69,6 @@ struct s_inf	*manage_display_on_winch(t_list *l);
 struct s_inf	*adapt_display_on_winch(struct s_inf *infos, char *s);
 void			is_to_del(int d, t_list **l, int *pos);
 void			print_to_adjust(struct s_inf *infos, char *s);
+void			is_tstp(int i, char *str);
+void			is_cont(int i);
 #endif

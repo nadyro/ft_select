@@ -6,7 +6,7 @@
 /*   By: nsehnoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/05 18:33:09 by nsehnoun          #+#    #+#             */
-/*   Updated: 2018/02/13 16:18:22 by nsehnoun         ###   ########.fr       */
+/*   Updated: 2018/02/15 06:50:31 by nsehnoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,13 @@ void	ft_select(void)
 	pos = 0;
 	while (1)
 	{
+		g_sig_pos = &pos;
 		manage_signals();
 		manage_winch(&pos);
 		if ((n = read(0, key, 3)) != -1)
 		{
 			key[n] = '\0';
-			if (key[0] == 27)
-				key_assist(key, &l, &pos);
+			key[0] == 27 ? key_assist(key, &l, &pos) : key;
 			if (key[0] == 27 && !key[1])
 				exit_to_origin(getenv("TERM"), 0, NULL);
 			selection_assist(key, &l, &pos);
@@ -96,23 +96,19 @@ void	ft_select(void)
 void	print_final_selection(void)
 {
 	t_list	*first;
-	t_list	*lst;
-	t_list	*list;
+	int		i;
 
-	lst = NULL;
+	i = 0;
 	first = first_singleton(NULL);
 	while (first)
 	{
 		if (first->selected)
-			copy_into_list(&lst, first->content);
+		{
+			if (i > 0)
+				ft_putchar(' ');
+			i = 1;
+			ft_putstr(first->content);
+		}
 		first = first->next;
-	}
-	list = lst;
-	while (list)
-	{
-		ft_putstr_fd(list->content, 1);
-		if (list->next != NULL)
-			ft_putchar_fd(' ', 1);
-		list = list->next;
 	}
 }

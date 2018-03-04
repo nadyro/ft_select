@@ -6,7 +6,7 @@
 /*   By: nsehnoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 20:13:23 by nsehnoun          #+#    #+#             */
-/*   Updated: 2018/02/13 15:35:34 by nsehnoun         ###   ########.fr       */
+/*   Updated: 2018/02/14 23:45:37 by nsehnoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ void	move_out(t_list **lst, int *pos, int s, int d)
 		}
 		else
 			control_others(&l);
-		print_to_adjust(infos, l->content);
+		if (l != NULL)
+			print_to_adjust(infos, l->content);
 		if (l != NULL)
 			l = l->next;
 		else

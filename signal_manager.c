@@ -6,14 +6,14 @@
 /*   By: nsehnoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 20:52:58 by nsehnoun          #+#    #+#             */
-/*   Updated: 2018/02/14 23:07:45 by nsehnoun         ###   ########.fr       */
+/*   Updated: 2018/02/15 07:40:15 by nsehnoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <errno.h>
 #include "ft_select.h"
 
 int		g_p;
+int		*g_sig_pos;
 
 void	manage_signals(void)
 {
@@ -31,18 +31,49 @@ void	manage_signals(void)
 	}
 }
 
+void	is_tstp(int i, char *str)
+{
+	if (i == SIGTSTP)
+	{
+		tputs(tgetstr("te", NULL), 1, fslct_putchar);
+		tputs(tgetstr("ve", NULL), 1, fslct_putchar);
+		signal(SIGTSTP, SIG_DFL);
+		ioctl(2, TIOCSTI, str);
+	}
+}
+
+void	is_cont(int i)
+{
+	if (i == SIGCONT)
+	{
+		g_p = 1;
+		getentry_term(getenv("TERM"), 0);
+		manage_winch(g_sig_pos);
+	}
+}
+
 void	signal_handling(int signum)
 {
 	int		i;
+	char	str[2];
 
 	i = 1;
-	g_p = 0;
+	str[0] = 26;
+	str[1] = '\0';
 	while (i < 32)
 	{
-		if (i == SIGWINCH && signum == i)
-			g_p = 1;
-		else if (signum == i)
-			exit_or_delete(NULL, 0);
+		if (i == signum)
+		{
+			if (i == SIGWINCH)
+			{
+				g_p = 1;
+				break ;
+			}
+			is_tstp(i, str);
+			is_cont(i);
+			if (signum != SIGCONT && i != SIGTSTP)
+				exit_or_delete(NULL, 0);
+		}
 		i++;
 	}
 }
